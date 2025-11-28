@@ -10,29 +10,61 @@ int main() {
 
     int numeroSecreto = 42;
 
-    int chute;
+    int chute;    
+    int tentativas = 1;
     
-    for(int i = 1; i <= 3; i++) {
-        printf("Tentativa %d de 3\n", i);
-
+    while (1){
+        printf("Tentativa %d\n", tentativas);
         printf("Qual é o seu chute? ");
         scanf("%d", &chute);
         printf("Seu chute foi %d\n", chute);
 
+        if(chute < 0) {
+            printf("Você não pode chutar números negativos!\n");            
+            continue;
+        }
+
         int acertou = (chute == numeroSecreto);
+        int maior = (chute > numeroSecreto);
 
         if(acertou) {
             printf("Parabéns! Você acertou!\n");
-        } else {
+            break;
+        } else if(maior) {
+            printf("Seu chute foi maior que o número secreto!\n");
+        } else {            
+            printf("Seu chute foi menor que o número secreto!\n");           
+        }
+        tentativas++;
+    }
 
-            int maior = (chute > numeroSecreto);
+    printf("Fim de jogo!\n");
+    printf("Você tentou %d vezes\n", tentativas);
+    
+    /*
+    for(int i = 1; i <= NUMERO_TENTATIVAS; i++) {
+        printf("Tentativa %d de %d\n", i, NUMERO_TENTATIVAS);
+        printf("Qual é o seu chute? ");
+        scanf("%d", &chute);
+        printf("Seu chute foi %d\n", chute);
 
-            if(maior) {
-                printf("Seu chute foi maior que o número secreto!\n");
-            } else {
-                printf("Seu chute foi menor que o número secreto!\n");
-            }
+        if(chute < 0) {
+            printf("Você não pode chutar números negativos!\n");
+            i--;
+            continue;
+        }
+
+        int acertou = (chute == numeroSecreto);
+        int maior = (chute > numeroSecreto);
+
+        if(acertou) {
+            printf("Parabéns! Você acertou!\n");
+            break;
+        } else if(maior) {
+            printf("Seu chute foi maior que o número secreto!\n");
+        } else {            
+            printf("Seu chute foi menor que o número secreto!\n");           
         }
     }
-    printf("Fim de jogo!\n");
+    */
 }
