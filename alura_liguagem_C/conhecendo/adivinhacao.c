@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 int main() {
     // limpa a tela do terminal e da um enterço no cursor
@@ -8,10 +10,15 @@ int main() {
     printf("* Bem vindo ao nosso jogo de adivinhação *\n");
     printf("******************************************\n");
 
-    int numeroSecreto = 42;
+    int segundos = time(0);
+    srand(segundos);
+    int numerogrande = rand();
 
-    int chute;    
+    int numeroSecreto = numerogrande % 100;
+    int chute;
     int tentativas = 1;
+    double pontos = 1000;
+    
     
     while (1){
         printf("Tentativa %d\n", tentativas);
@@ -36,10 +43,17 @@ int main() {
             printf("Seu chute foi menor que o número secreto!\n");           
         }
         tentativas++;
+
+        double pontosperdidos = abs(chute - numeroSecreto) / 2.0;
+        // if (pontosperdidos < 0) {
+        //     pontosperdidos = pontosperdidos * -1;
+        // }
+        pontos = pontos - pontosperdidos;
     }
 
     printf("Fim de jogo!\n");
     printf("Você tentou %d vezes\n", tentativas);
+    printf("Total de pontos: %.1f\n", pontos);
     
     /*
     for(int i = 1; i <= NUMERO_TENTATIVAS; i++) {
